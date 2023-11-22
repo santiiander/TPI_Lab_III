@@ -294,19 +294,19 @@ export async function editRegister(id){
 
     formulario = d.querySelector(".frmAmUsuario")
     formulario.addEventListener("submit", modificar);
-    let usuario =  await usuariosServices.listar(id);
+    let user =  await usuariosServices.listar(id);
 
     
-    txtNombre.value= usuario.nombre;
-    txtApellido.value= usuario.apellido;
-    txtCorreo.value= usuario.correo;
-    txtPass.value= usuario.password;
-    if (usuario.avatar.length > 0 )
-        fileAvatar.src= usuario.avatar;
-    selPais.value= usuario.pais;
-    txtCiudad.value= usuario.ciudad;
-    txtDireccion.value= usuario.direccion;
-    txtTelefono.value= usuario.telefono;
+    txtNombre.value= user.name;
+    txtApellido.value= user.lastname;
+    txtCorreo.value= user.email;
+    txtPass.value= user.password;
+    if (user.avatar.length > 0 )
+        fileAvatar.src= user.pic;
+    selPais.value= user.country;
+    txtCiudad.value= user.city;
+    txtDireccion.value= user.address;
+    txtTelefono.value= user.phone;
 }
 
 function crearFormulario(){
