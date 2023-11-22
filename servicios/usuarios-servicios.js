@@ -12,7 +12,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(apellido, nombre, correo, password, avatar, pais, ciudad, direccion, telefono) {
+async function crear(lastname, name, correo, password, pic, country, city, address, phone) {
 
     return await fetch(url, {
         method: 'POST',
@@ -20,20 +20,20 @@ async function crear(apellido, nombre, correo, password, avatar, pais, ciudad, d
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            apellido: apellido,
-            nombre: nombre,
+            lastname: lastname,
+            name: name,
             correo: correo,
             password: password,
-            avatar: avatar,
-            pais: pais,
-            ciudad: ciudad,
-            direccion: direccion,
-            telefono:  telefono
+            pic: pic,
+            country: country,
+            city: city,
+            address: address,
+            phone:  phone
         })
     })
 }
 
-async function editar(id, apellido, nombre, correo, password, avatar, pais, ciudad, direccion, telefono) {
+async function editar(id, lastname, name, correo, password, pic, country, city, address, phone) {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -42,15 +42,15 @@ async function editar(id, apellido, nombre, correo, password, avatar, pais, ciud
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            apellido: apellido,
-            nombre: nombre,
+            lastname: lastname,
+            name: name,
             correo: correo,
             password: password,
-            avatar: avatar,
-            pais: pais,
-            ciudad: ciudad,
-            direccion: direccion,
-            telefono:  telefono
+            pic: pic,
+            country: country,
+            city: city,
+            address: address,
+            phone:  phone
         })
     })
 }
