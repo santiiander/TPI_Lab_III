@@ -1,4 +1,4 @@
-const url = "https://65480baf902874dff3acf283.mockapi.io/api/TpiLab3bis/productos";
+const url = "https://655fc9fd83aba11d99cfdda0.mockapi.io/category/1/products";
 
 
 async function listar(id) {
@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(nombre, descripcion, foto, precio, idCategoria, categoria) {
+async function crear(pname, pdesc, ppic, pprice, id, category) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,17 +19,17 @@ async function crear(nombre, descripcion, foto, precio, idCategoria, categoria) 
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nombre: nombre,
-            descripcion: descripcion,
-            foto: foto,
-            precio: precio,
-            idCategoria: idCategoria,
-            categoria: categoria
+            nombre: pname,
+            descripcion: pdesc,
+            foto: ppic,
+            precio: pprice,
+            idCategoria: id,
+            categoria: category
         })
     })
 }
 
-async function editar(id, nombre, descripcion, foto, precio, idCategoria, categoria) {
+async function editar(id, pname, pdesc, ppic, pprice, idCategoria, category) {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -38,12 +38,12 @@ async function editar(id, nombre, descripcion, foto, precio, idCategoria, catego
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nombre: nombre,
-            descripcion: descripcion,
-            foto: foto,
-            precio: precio,
+            nombre: pname,
+            descripcion: pdesc,
+            foto: ppic,
+            precio: pprice,
             idCategoria: idCategoria,
-            categoria: categoria
+            categoria: category
         })
     })
 }

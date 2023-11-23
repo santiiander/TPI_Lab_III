@@ -1,4 +1,4 @@
-const url = "https://65418746f0b8287df1fe755a.mockapi.io/api/TpiLab3/categorias";
+const url = "https://655fc9fd83aba11d99cfdda0.mockapi.io/category";
 
 
 async function listar(id) {
@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(descripcion) {
+async function crear(name) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,12 +19,12 @@ async function crear(descripcion) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            descripcion: descripcion
+            descripcion: name
         })
     })
 }
 
-async function editar(id, descripcion) {
+async function editar(id, name) {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -33,7 +33,7 @@ async function editar(id, descripcion) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            descripcion: descripcion
+            descripcion: name
         })
     })
 }
