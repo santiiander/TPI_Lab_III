@@ -298,16 +298,16 @@ export async function editRegister(id){
     let usuario =  await usuariosServices.listar(id);
 
     
-    txtNombre.value= usuario.nombre;
-    txtApellido.value= usuario.apellido;
-    txtCorreo.value= usuario.correo;
+    txtNombre.value= usuario.name;
+    txtApellido.value= usuario.lastname;
+    txtCorreo.value= usuario.email;
     txtPass.value= usuario.password;
     if (usuario.avatar.length > 0 )
-        fileAvatar.src= usuario.avatar;
-    selPais.value= usuario.pais;
-    txtCiudad.value= usuario.ciudad;
-    txtDireccion.value= usuario.direccion;
-    txtTelefono.value= usuario.telefono;
+        fileAvatar.src= usuario.pic;
+    selPais.value= usuario.country;
+    txtCiudad.value= usuario.city;
+    txtDireccion.value= usuario.address;
+    txtTelefono.value= usuario.pone;
 }
 
 function crearFormulario(){

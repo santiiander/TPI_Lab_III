@@ -105,10 +105,10 @@ function llenarTabla(res){
         data : res,
         columns: [
             { data: 'id' },    
-            { data: 'apellido' },
-            { data: 'nombre' },
-            { data: 'correo' },
-            { data: 'ciudad' },
+            { data: 'lastname' },
+            { data: 'name' },
+            { data: 'email' },
+            { data: 'city' },
             { data: 'action', "orderable":false }
             
         ],
