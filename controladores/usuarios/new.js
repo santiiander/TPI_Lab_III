@@ -278,6 +278,7 @@ export async function newRegister(){
     let d = document;
     
     d.querySelector('.contenidoTitulo').innerHTML = 'Agregar Usuario';
+	d.querySelector('.contenidoTituloSec').innerHTML += 'Agregar';
    
     crearFormulario();
 
@@ -289,24 +290,24 @@ export async function editRegister(id){
     let d = document;
     idUsuario = id;
     d.querySelector('.contenidoTitulo').innerHTML = 'Editar Usuario';
-   
+    d.querySelector('.contenidoTituloSec').innerHTML += 'Editar';
     crearFormulario();
 
     formulario = d.querySelector(".frmAmUsuario")
     formulario.addEventListener("submit", modificar);
-    let user =  await usuariosServices.listar(id);
+    let usuario =  await usuariosServices.listar(id);
 
     
-    txtNombre.value= user.name;
-    txtApellido.value= user.lastname;
-    txtCorreo.value= user.email;
-    txtPass.value= user.password;
-    if (user.avatar.length > 0 )
-        fileAvatar.src= user.pic;
-    selPais.value= user.country;
-    txtCiudad.value= user.city;
-    txtDireccion.value= user.address;
-    txtTelefono.value= user.phone;
+    txtNombre.value= usuario.nombre;
+    txtApellido.value= usuario.apellido;
+    txtCorreo.value= usuario.correo;
+    txtPass.value= usuario.password;
+    if (usuario.avatar.length > 0 )
+        fileAvatar.src= usuario.avatar;
+    selPais.value= usuario.pais;
+    txtCiudad.value= usuario.ciudad;
+    txtDireccion.value= usuario.direccion;
+    txtTelefono.value= usuario.telefono;
 }
 
 function crearFormulario(){
