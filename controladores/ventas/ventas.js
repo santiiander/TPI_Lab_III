@@ -80,8 +80,8 @@ function llenarTabla(res){
         data : res,
         columns: [
             { data: 'id' },    
-            { data: 'emailUsuario' },
-            { data: 'nombreProducto' },
+            { data: 'email' },
+            { data: 'producto' },
             { data: 'cantidad' },
             { data: 'fecha' },
             { data: 'action', "orderable":false }

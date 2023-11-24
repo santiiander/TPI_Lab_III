@@ -1,4 +1,4 @@
-const url = "https://65480baf902874dff3acf283.mockapi.io/api/TpiLab3bis/ventas";
+const url = "https://655e38789f1e1093c59abf3d.mockapi.io/ventas";
 
 
 async function listar(id) {
@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(idUsuario, emailUsuario, idProducto, nombreProducto, cantidad, fecha, despachado) {
+async function crear(id, email, idProducto, producto, cantidad, fecha, despachado) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,10 +19,10 @@ async function crear(idUsuario, emailUsuario, idProducto, nombreProducto, cantid
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            idUsuario: idUsuario, 
-            emailUsuario: emailUsuario, 
+            idUsuario: id, 
+            emailUsuario: email, 
             idProducto: idProducto, 
-            nombreProducto: nombreProducto, 
+            nombreProducto: producto, 
             cantidad: cantidad, 
             fecha: fecha, 
             despachado: despachado
