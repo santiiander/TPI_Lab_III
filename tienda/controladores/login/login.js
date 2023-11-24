@@ -107,7 +107,7 @@ function crearFormulario(registrar){
         inputRepetirPass.innerHTML=" "
     }
     else{
-        loginRePass.style.display="block"
+        reLoginPassword.style.display="block"
     }
 } 
 
