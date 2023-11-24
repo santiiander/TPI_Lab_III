@@ -83,7 +83,17 @@ function crearFormulario(registrar){
      *    el input reLoginPassword se mostrará en pantalla.
      * 7- Por último se deberá capturar el formulario indentificado con la clase .formLogin y asignarlo a la variable global formulario.
      */
-    
+    var seccionCarrusel = document.querySelector(".carrusel")
+    seccionCarrusel.outerHTML = ' '
+
+    var seccionProductos = document.querySelector(".seccionProductos")
+    seccionProductos.outerHTML = ' '
+
+    var vistaProducto = document.querySelector(".vistaProducto")
+    vistaProducto.outerHTML = ' '
+
+    var seccionLogin = document.querySelector(".seccionLogin")
+    seccionLogin.innerHTML = htmlLogin.value 
 } 
 
 async function  ingresar(e){
