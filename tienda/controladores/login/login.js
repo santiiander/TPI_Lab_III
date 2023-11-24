@@ -93,7 +93,22 @@ function crearFormulario(registrar){
     vistaProducto.outerHTML = ' '
 
     var seccionLogin = document.querySelector(".seccionLogin")
-    seccionLogin.innerHTML = htmlLogin.value 
+    seccionLogin.innerHTML = htmlLogin 
+
+    loginMail=document.getElementById("loginEmail");
+    loginPass=document.getElementById("loginPassword")
+    loginRePass=document.getElementById("reLoginPassword")
+
+    inputEmail=loginMail.value
+    inputPassword=loginPass.value
+    inputRepetirPass=loginRePass.value
+
+    if(!register){
+        inputRepetirPass.innerHTML=" "
+    }
+    else{
+        loginRePass.style.display="block"
+    }
 } 
 
 async function  ingresar(e){
