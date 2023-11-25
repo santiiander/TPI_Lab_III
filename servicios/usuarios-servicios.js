@@ -12,7 +12,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(lastname, name, email, password, pic, country, city, address, phone, role="admin") {
+async function crear(apellido, nombre, correo, password, avatar, pais, ciudad, direccion, telefono, role="admin") {
 
     return await fetch(url, {
         method: 'POST',
@@ -20,21 +20,21 @@ async function crear(lastname, name, email, password, pic, country, city, addres
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            lastname: lastname,
-            name: name,
-            email: email,
+            apellido: apellido,
+            nombre: nombre,
+            correo: correo,
             password: password,
-            pic: pic,
-            country: country,
-            city: city,
-            address: address,
-            phone:  phone,
+            avatar: avatar,
+            pais: pais,
+            ciudad: ciudad,
+            direccion: direccion,
+            telefono:  telefono,
             role: role
         })
     })
 }
 
-async function editar(id, lastname, name, email, password, pic, country, city, address, phone, role="admin") {
+async function editar(id, apellido, nombre, correo, password, avatar, pais, ciudad, direccion, telefono, role="admin") {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -43,15 +43,15 @@ async function editar(id, lastname, name, email, password, pic, country, city, a
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            lastname: lastname,
-            name: name,
-            email: email,
+            apellido: apellido,
+            nombre: nombre,
+            correo: correo,
             password: password,
-            pic: pic,
-            country: country,
-            city: city,
-            address: address,
-            phone:  phone,
+            avatar: avatar,
+            pais: pais,
+            ciudad: ciudad,
+            direccion: direccion,
+            telefono:  telefono,
             role: role
         })
     })

@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(id, email, idProducto, producto, cantidad, fecha, despachado) {
+async function crear(id, correo, idProducto, producto, cantidad, fecha, despachado) {
 
     return await fetch(url, {
         method: 'POST',
@@ -20,7 +20,7 @@ async function crear(id, email, idProducto, producto, cantidad, fecha, despachad
         },
         body: JSON.stringify({
             idUsuario: id, 
-            emailUsuario: email, 
+            emailUsuario: correo, 
             idProducto: idProducto, 
             nombreProducto: producto, 
             cantidad: cantidad, 
