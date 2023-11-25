@@ -20,7 +20,7 @@ function htmlCategoria(id, categoria) {
   return html;
 }
 
-function htmlItemProducto(id, imagen, nombre, precio) {
+function htmlItemProducto(id, foto, nombre, precio) {
       /**1- ESTA FUNCION RECIBE COMO PARAMETRO los siguiente datos id, imagen, nombre y precio del producto */
     /**2- A ESTOS PARAMETROS LOS CONCATENA DENTRO DEL CODIGO CORRESPONDIENTE AL COMPONENTE itemProducto ( ASSETS/MODULOS/itemProducto.html)*/
     /**3- POR ULTIMO DEVUELVE LA CADENA RESULTANTE. */
@@ -35,7 +35,7 @@ function htmlItemProducto(id, imagen, nombre, precio) {
   const html = template(
     `
     <div class="producto" data-idProducto="${id}">
-      <img src="${imagen}" alt="${nombre}">
+      <img src="${foto}" alt="${nombre}">
       <h3>${nombre}</h3>
       <p>${precio} €</p>
     </div>
@@ -55,7 +55,7 @@ async function asignarProducto(id) {
 
     const productos = await productosServices.obtenerProductosPorCategoria(id);
   
-    const htmlProductos = productos.map(producto => htmlItemProducto(producto.id, producto.imagen, producto.nombre, producto.precio));
+    const htmlProductos = productos.map(producto => htmlItemProducto(producto.id, producto.foto, producto.nombre, producto.precio));
   
     const elementoCategoria = document.querySelector(`.seccionProductos[data-idCategoria="${id}"]`);
   
@@ -75,7 +75,7 @@ async function listarProductos() {
   
     const productos = await productosServices.obtenerProductos();
   
-    const htmlProductos = productos.map(producto => htmlItemProducto(producto.id, producto.imagen, producto.nombre, producto.precio));
+    const htmlProductos = productos.map(producto => htmlItemProducto(producto.id, producto.foto, producto.nombre, producto.precio));
   
     const elementoProductos = document.querySelector(".productos");
   
