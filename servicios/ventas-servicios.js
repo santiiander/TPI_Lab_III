@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(id, correo, idProducto, producto, cantidad, fecha, despachado) {
+async function crear(idUsuario, emailUsuario, idProducto, nombreProducto, cantidad, fecha, despachado) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,10 +19,10 @@ async function crear(id, correo, idProducto, producto, cantidad, fecha, despacha
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            idUsuario: id, 
-            emailUsuario: correo, 
+            idUsuario: idUsuario, 
+            emailUsuario: emailUsuario, 
             idProducto: idProducto, 
-            nombreProducto: producto, 
+            nombreProducto: nombreProducto, 
             cantidad: cantidad, 
             fecha: fecha, 
             despachado: despachado
@@ -30,9 +30,9 @@ async function crear(id, correo, idProducto, producto, cantidad, fecha, despacha
     })
 }
 
-async function editar(id,  despachado) {
+async function editar(idUsuario, despachado) {
 
-    let urlPut = url + "/" + id;
+    let urlPut = url + "/" + idUsuario;
     return await fetch(urlPut, {
         method: 'PUT',
         headers: {
