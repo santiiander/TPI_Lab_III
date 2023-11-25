@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(pname, pdesc, ppic, pprice, id, category) {
+async function crear(nombre, descripcion, foto, precio, idCategoria, categoria) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,17 +19,17 @@ async function crear(pname, pdesc, ppic, pprice, id, category) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nombre: pname,
-            descripcion: pdesc,
-            foto: ppic,
-            precio: pprice,
-            idCategoria: id,
-            categoria: category
+            nombre: nombre,
+            descripcion: descripcion,
+            foto: foto,
+            precio: precio,
+            idCategoria: idCategoria,
+            categoria: categoria
         })
     })
 }
 
-async function editar(id, pname, pdesc, ppic, pprice, idCategoria, category) {
+async function editar(id, nombre, descripcion, foto, precio, idCategoria, categoria) {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -38,12 +38,12 @@ async function editar(id, pname, pdesc, ppic, pprice, idCategoria, category) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nombre: pname,
-            descripcion: pdesc,
-            foto: ppic,
-            precio: pprice,
+            nombre: nombre,
+            descripcion: descripcion,
+            foto: foto,
+            precio: precio,
             idCategoria: idCategoria,
-            categoria: category
+            categoria: categoria
         })
     })
 }

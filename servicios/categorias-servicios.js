@@ -11,7 +11,7 @@ async function listar(id) {
         .then(respuesta => respuesta.json());
 }
 
-async function crear(name) {
+async function crear(descripcion) {
 
     return await fetch(url, {
         method: 'POST',
@@ -19,12 +19,12 @@ async function crear(name) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            descripcion: name
+            descripcion: descripcion
         })
     })
 }
 
-async function editar(id, name) {
+async function editar(id, descripcion) {
 
     let urlPut = url + "/" + id;
     return await fetch(urlPut, {
@@ -33,7 +33,7 @@ async function editar(id, name) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            descripcion: name
+            descripcion: descripcion
         })
     })
 }
