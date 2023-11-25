@@ -78,45 +78,57 @@ export async function register(){
 }
 
 function crearFormulario(registrar){
-    /**
-     * 1- Esta función deberá capturar el elemento cuya clase es .carrusel y le asignará en su interior un blanco para eliminar su contenido previo.
-     * 2- Deberá realizar lo mismo para la clase .seccionProductos y .vistaProducto.
-     * 3- Luego deberá capturar la .seccionLogin para asignarle el contenido html del componente login, el cual se encuentra previamente 
-     *    cargado en la constante htmlLogin.
-     * 4- Deberá capturar los id correspondientes a loginEmail, loginPassword y reLoginPassword para asignarlos a las variable definidas
-     *    inputEmail, inputPassword e inputRepetirPass.
-     * 5- En el caso que el parámetro registrar sea falso deberá eliminar el contenido del elemento id reLoginPassword.
-     * 6- Para el caso que el parámetro registrar sea verdadero deberá cambiar el valor de la propiedad css dysplay a block. De esta forma
-     *    el input reLoginPassword se mostrará en pantalla.
-     * 7- Por último se deberá capturar el formulario indentificado con la clase .formLogin y asignarlo a la variable global formulario.
-     */
-    var seccionCarrusel = document.querySelector(".carrusel")
-    seccionCarrusel.outerHTML = ' '
+    /* 1- Esta función deberá capturar el elemento cuya clase es .carrusel y le asignará en su interior un blanco para eliminar su contenido previo. */
 
-    var seccionProductos = document.querySelector(".seccionProductos")
-    seccionProductos.outerHTML = ' '
+    var seccionCarrusel = document.querySelector(".carrusel");
+    seccionCarrusel.outerHTML = ' ';
 
-    var vistaProducto = document.querySelector(".vistaProducto")
-    vistaProducto.outerHTML = ' '
+    /* 2- Deberá realizar lo mismo para la clase .seccionProductos y .vistaProducto. */
 
-    var seccionLogin = document.querySelector(".seccionLogin")
-    seccionLogin.innerHTML = htmlLogin 
+    var seccionProductos = document.querySelector(".seccionProductos");
+    seccionProductos.outerHTML = ' ';
 
-    loginMail=document.getElementById("loginEmail");
-    loginPass=document.getElementById("loginPassword")
-    loginRePass=document.getElementById("reLoginPassword")
+    var vistaProducto = document.querySelector(".vistaProducto");
+    vistaProducto.outerHTML = ' ';
 
-    inputEmail=loginMail.value
-    inputPassword=loginPass.value
-    inputRepetirPass=loginRePass.value
+    /* 3- Luego deberá capturar la .seccionLogin para asignarle el contenido html del componente login, el cual se encuentra previamente 
+     *    cargado en la constante htmlLogin. */
 
-    if(!register){
-        inputRepetirPass.innerHTML=" "
+    var seccionLogin = document.querySelector(".seccionLogin");
+    seccionLogin.innerHTML = htmlLogin;
+
+    /* 4- Deberá capturar los id correspondientes a loginEmail, loginPassword y reLoginPassword para asignarlos a las variable definidas
+     *    inputEmail, inputPassword e inputRepetirPass. */
+
+    var loginMail = document.getElementById("loginEmail");
+    inputEmail=loginMail
+
+
+    var loginPass = document.getElementById("loginPassword");
+    inputPassword=loginPass
+
+
+    var loginRePass = document.getElementById("reLoginPassword");
+    inputRepetirPass=loginRePass
+
+
+    /* 5- En el caso que el parámetro registrar sea falso deberá eliminar el contenido del elemento id reLoginPassword. */
+
+    if (!registrar) {
+        loginRePass.innerHTML = "";
     }
-    else{
-        reLoginPassword.style.display="block"
+
+    /* 6- Para el caso que el parámetro registrar sea verdadero deberá cambiar el valor de la propiedad css dysplay a block. De esta forma
+     *    el input reLoginPassword se mostrará en pantalla. */
+
+    else {
+        loginRePass.style.display = "block";
     }
-} 
+
+    /* 7- Por último se deberá capturar el formulario indentificado con la clase .formLogin y asignarlo a la variable global formulario. */
+
+    formulario = document.querySelector(".formLogin");
+}
 
 async function ingresar(e){
     /**
