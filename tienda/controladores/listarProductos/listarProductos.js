@@ -15,6 +15,7 @@ function htmlItemProducto(id, imagen, nombre, precio) {
     return `
         <!-- Código HTML correspondiente al componente itemProducto.html -->
         <div class="producto">
+            <h3>${id}</h3> 
             <img src="${imagen}" alt="${nombre}">
             <h3>${nombre}</h3>
             <p>Precio: $${precio}</p>
@@ -22,6 +23,8 @@ function htmlItemProducto(id, imagen, nombre, precio) {
         </div>
     `;
 }
+
+//La linea 17 no va, la agregué para usar ID
 
 async function asignarProducto(id) {
     const productos = await productosServices.obtenerPorCategoria(id);
