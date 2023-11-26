@@ -2,7 +2,7 @@
 import { usuariosServices } from "../../../servicios/usuarios-servicios.js";
 
 /**1- Se debe asignar a la siguiente constante todo el código correspondiente al componente de login (/asset/modulos/login.html)  */
-const htmlLogin=
+var htmlLogin=
 `
 <div class="contenedorLogin">
 <div class="cajaLogin">
@@ -85,7 +85,93 @@ function crearFormulario(registrar) {
   
     // 3- Capturamos la .seccionLogin para asignarle el contenido html del componente login.
     const seccionLogin = document.querySelector(".seccionLogin");
+    var htmlLogin=
+    `
+    <div class="contenedorLogin">
+    <div class="cajaLogin">
+        <p >Registrarse</p>
+
+        <form  class="formLogin" >
+
+            <div class="input-group">
+                
+                <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
+                
+            </div>
+
+            <div class="input-group">
+                
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="loginPassword" autocomplete required>
+            
+            </div>
+
+            <div class="input-group">
+                
+                <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Password" name="reLoginPassword"  required>
+            
+            </div>
+                        
+            <div class="row">
+                                
+                <div class="col-4">
+                <button type="submit"  id="iniciar-sesion" class="btnAmarillo">Registrarse</button>
+                </div>
+                    
+            </div>
+        </form>
+            
+    </div>
+    </div>
+    `;
+
+    let hash = location.hash;
+    if (hash === '#login' ) {
+
+        var htmlLogin=
+        `
+        <div class="contenedorLogin">
+        <div class="cajaLogin">
+            <p >Iniciar Sesion</p>
+    
+            <form  class="formLogin" >
+    
+                <div class="input-group">
+                    
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
+                    
+                </div>
+    
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="loginPassword" autocomplete required>
+                
+                </div>
+    
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Password" name="reLoginPassword"  required>
+                
+                </div>
+                            
+                <div class="row">
+                                    
+                    <div class="col-4">
+                    <button type="submit"  id="iniciar-sesion" class="btnAmarillo">Iniciar Sesion</button>
+                    </div>
+                        
+                </div>
+            </form>
+                
+        </div>
+        </div>
+        `;
+       
+        
+    }
     seccionLogin.innerHTML = htmlLogin;
+
+
+    //No es la forma practica de hacerlo en absoluto pero funcionó xd
   
     // 4- Capturamos los id correspondientes a loginEmail, loginPassword y reLoginPassword.
     const inputEmail = document.getElementById("loginEmail");
