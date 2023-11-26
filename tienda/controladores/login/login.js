@@ -59,6 +59,7 @@ export async function login() {
     // 2. Enlazamos el evento `submit` del formulario con la función `enviarFormulario()`
     formLogin.addEventListener("submit", enviarFormulario);
   }
+  
 
   export async function register() {
     // 1. Llamamos a la función `crearFormulario()` para renderizar el formulario de registro
@@ -66,15 +67,8 @@ export async function login() {
   
     // 2. Enlazamos el evento `submit` del formulario con la función `registrarUsuario()`
     formLogin.addEventListener("submit", registrarUsuario);
-
-    // 3. Cambiamos el texto del título del formulario
-    const titulo = document.querySelector(".cajaLogin > p");
-    titulo.textContent = "Registrarse";
-
-    // 4. Cambiamos el texto del botón de submit (con el ID iniciar-sesion)
-    const boton = document.querySelector("#iniciar-sesion");
-    boton.textContent = "Registrarse";    
 }
+  
 
 
 
