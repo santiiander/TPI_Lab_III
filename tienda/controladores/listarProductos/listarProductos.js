@@ -3,7 +3,7 @@ import { productosServices } from "../../../servicios/productos-servicios.js";
 
 function htmlCategoria(id, categoria){
    
-    let htmlCat = 
+    let cad = 
     `
     <div class="categorias" data-idCategoria="${id}">
         <h1 class="categoria">${categoria}</h1>
@@ -14,12 +14,12 @@ function htmlCategoria(id, categoria){
         </div>
     </div>            
     `;
-    return htmlCat; 
+    return cad; 
 }
 
 function htmlItemProducto(id, imagen, nombre, precio){
    
-    let htmlitemProd = 
+    let cad = 
     `
     <div class="item-producto">
 
@@ -30,24 +30,30 @@ function htmlItemProducto(id, imagen, nombre, precio){
     <a href="?idProducto=${id}#vistaProducto" type="button" class="producto_enlace" >Ver producto</a>
 
     </div>`;
-    return htmlitemProd; 
+    return cad; 
 }
 
 async function asignarProducto(id){
-    let htmlCat = "";
+   
+    let d = document;
+    let cad = "";
     let resProd = await productosServices.listarPorCategoria(id);
 
     resProd.forEach(producto => {
-        htmlCat += htmlItemProducto(producto.id,producto.foto,producto.nombre,producto.precio);
+        cad += htmlItemProducto(producto.id,producto.foto,producto.nombre,producto.precio);
     });
         
-    let itemProducto = document.querySelector("[data-idCategoria='"+ id + "'] .productos");
-    itemProducto.innerHTML = htmlCat; 
+    let itemProducto = d.querySelector("[data-idCategoria='"+ id + "'] .productos");
+    itemProducto.innerHTML = cad; 
 } 
 
 
 export async function listarProductos(){
-    let listaProductos = document.querySelector(".seccionProductos");
+   
+    let d = document;
+    let resCat;
+
+    let listaProductos = d.querySelector(".seccionProductos");
 
     listaProductos.innerHTML = "";
     resCat = await categoriasServices.listar();
