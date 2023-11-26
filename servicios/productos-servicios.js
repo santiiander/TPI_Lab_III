@@ -1,4 +1,4 @@
-const url = "https://655fc9fd83aba11d99cfdda0.mockapi.io/category/1/products";
+const url = "https://655fc9fd83aba11d99cfdda0.mockapi.io/products";
 
 
 async function listar(id) {
