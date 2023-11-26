@@ -27,7 +27,7 @@ function htmlItemProducto(id, imagen, nombre, precio) {
 //La linea 17 no va, la agregué para usar ID
 
 async function asignarProducto(id) {
-    const productos = await productosServices.obtenerPorCategoria(id);
+    const productos = await productosServices.listarPorCategoria(id);
     let htmlProductos = "";
 
     for (const producto of productos) {
