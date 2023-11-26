@@ -85,7 +85,7 @@ function crearFormulario(registrar) {
   
     // 3- Capturamos la .seccionLogin para asignarle el contenido html del componente login.
     const seccionLogin = document.querySelector(".seccionLogin");
-    seccionLogin.innerHTML += htmlLogin;
+    seccionLogin.innerHTML = htmlLogin;
   
     // 4- Capturamos los id correspondientes a loginEmail, loginPassword y reLoginPassword.
     const inputEmail = document.getElementById("loginEmail");
