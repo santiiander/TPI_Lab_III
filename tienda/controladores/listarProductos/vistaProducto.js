@@ -15,6 +15,8 @@ export async function vistaProducto(){
     var vistaProducto = document.querySelector(".vistaProducto")
     var idProducto = leerParametro()
 
+    /**llama a la funcion listar() de productosServices para obtener la informacion del producto
+     * la funcion listar() toma como parametro el ID del producto y devuelve un objeto con la informacion del producto */
     lista = await productosServices.listar(idProducto)
 
     vistaProducto.innerHTML = htmlVistaProducto(lista.id, lista.nombre, lista.descripcion, lista.precio, lista.foto)
@@ -48,15 +50,17 @@ function htmlVistaProducto(id, nombre, descripcion, precio, imagen){
 }
 
 function leerParametro(){
-   
+   /**almacena los parámetros de la URL. */
     const words = new URLSearchParams(window.location.search)
+    /**obtiene el valor del parametro idProducto del objeto URLSearchParams */
     var vista = words.get("idProducto")
+    /**verifica si el valor del parametro idProducto es nulo. si lo es, la funcion devuelve null */
     if (!vista) return null
     return vista.trim()
 }
 
 function registrarCompra(){
-
+    /**verifica si el usuario esta autenticado. si no lo esta, la funcion muestra un mensaje de alerta y devuelve */
     var session = getUsuarioAutenticado()
     if(!session.autenticado){
         alert("Porfavor inicie secion")
