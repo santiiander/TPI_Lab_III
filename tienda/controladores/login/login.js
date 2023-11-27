@@ -41,7 +41,7 @@ const htmlLogin=
 `
 
 var formulario
-var email
+var inputEmail
 var contra
 var repContra
 
@@ -66,10 +66,10 @@ function crearFormulario(registrar){
 
     var seccionLogin = document.querySelector(".seccionLogin")
     seccionLogin.innerHTML = htmlLogin
-    email = document.getElementById("loginEmail")
+    inputEmail = document.getElementById("loginEmail")
     contra = document.getElementById("loginPassword")
     repContra = document.getElementById("reLoginPassword")
-    if(!registrar){
+    if (!registrar){
         repContra.outerHTML = ""
     }else{
         repContra.style.display = "block"
@@ -83,7 +83,7 @@ async function  ingresar(e){
     var idUsuario = await usuarioExiste()
     if(idUsuario){
         setUsuarioAutenticado(true,idUsuario)
-        mostrarUsuario(email.value)
+        mostrarUsuario(inputEmail.value)
         window.location.href='#'
     }else{
         mostrarMensaje("email o contrasena incorrecto")
@@ -94,7 +94,7 @@ async function  registrarUsuario(e){
     e.preventDefault()
 
     if(contra.value===repContra.value){ 
-        await usuariosServices.crear(null,null,email.value,contra.value) 
+        await usuariosServices.crear(null,null,inputEmail.value,contra.value) 
         mostrarMensaje("registrado")
         window.location.href = "#login"
     }else{
@@ -107,7 +107,7 @@ async function usuarioExiste(){
     await usuariosServices.listar()
         .then(respuesta => {
             respuesta.forEach(usuario => {
-                if(usuario.correo === email.value && usuario.password === contra.value){
+                if(usuario.correo === inputEmail.value && usuario.password === contra.value){
                     idUsuario = usuario.id
                     return existeUsuario = true
                 }else{
@@ -144,8 +144,8 @@ function mostrarMensaje(msj){
 
 export function setUsuarioAutenticado(booleano, idUsuario){
     var email = ""
-    if (email)
-        email = email.value
+    if (inputEmail)
+        email = inputEmail.value
     sessionStorage.setItem('autenticado',booleano)
     sessionStorage.setItem('idUsuario',idUsuario)
     sessionStorage.setItem('email',email)
@@ -153,7 +153,7 @@ export function setUsuarioAutenticado(booleano, idUsuario){
 
 export function getUsuarioAutenticado(){
     var session = new Object()
-    session.autenticado = sessionStorage.getItem('autenticado')=== "true"
+    session.autenticado = sessionStorage.getItem('autenticado') === "true"
     session.idUsuario = sessionStorage.getItem('idUsuario')
     session.email = sessionStorage.getItem('email')
     return session

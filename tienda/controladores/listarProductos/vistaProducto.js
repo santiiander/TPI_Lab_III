@@ -26,6 +26,7 @@ export async function vistaProducto(){
 
 function htmlVistaProducto(id, nombre, descripcion, precio, imagen){
     var vista =
+    
             `<div class="imagen">
             <img src="${imagen}" alt="producto">
         </div>

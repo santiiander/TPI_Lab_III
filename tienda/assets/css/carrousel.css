@@ -32,13 +32,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px; 
+
 }
 
 
 
 .itemCarrouselArrows > a > i{
     display: block;
-    color: white;
+    color: black;
     font-size: xx-large;
     text-align: center;
     padding: 3px;
@@ -49,7 +50,7 @@
 }
 .itemCarrouselArrows > a:hover {
     cursor: pointer;
-    background-color: rgba(128, 128, 128, 0.144);
+    background-color: rgba(168, 23, 23, 0.144);
 }
 
 
