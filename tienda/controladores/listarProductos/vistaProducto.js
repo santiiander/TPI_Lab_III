@@ -4,31 +4,27 @@ import { ventasServices } from "../../../servicios/ventas-servicios.js";
 import { getUsuarioAutenticado } from "../login/login.js";
 
 export async function vistaProducto(){
+    var lista
+    var carrusel = document.querySelector(".carrusel")
+    var seccionProductos = document.querySelector(".seccionProductos")
+    var vistaProducto = document.querySelector(".vistaProducto")
+    carrusel.innerHTML = ""
+    var seccionLogin = document.querySelector(".seccionLogin")
+    seccionLogin.innerHTML = ""
+    seccionProductos.innerHTML = ""
+    var idProducto = leerParametro()
 
-    let d = document; 
-    let res; 
-    let carrusel = d.querySelector(".carrusel");
-    let seccionProductos = d.querySelector(".seccionProductos");
-    let vistaProducto = d.querySelector(".vistaProducto");
-    carrusel.innerHTML = "";
-    let seccionLogin = d.querySelector(".seccionLogin");
-    seccionLogin.innerHTML = "";
-    seccionProductos.innerHTML = "";
-    let idProducto = leerParametro();
+    lista = await productosServices.listar(idProducto)
 
-    res = await productosServices.listar(idProducto);
+    vistaProducto.innerHTML = htmlVistaProducto(lista.id, lista.nombre, lista.descripcion, lista.precio, lista.foto)
 
-    vistaProducto.innerHTML = htmlVistaProducto(res.id, res.nombre, res.descripcion, res.precio, res.foto);
+    var btnComprar = document.getElementById("btnComprar")
 
-    let btnComprar = d.getElementById("btnComprar");
-
-    btnComprar.addEventListener("click", registrarCompra);
+    btnComprar.addEventListener("click", registrarCompra)
 }
 
-function htmlVistaProducto(id, nombre, descripcion, precio, imagen) {
-
-
-    let cad =
+function htmlVistaProducto(id, nombre, descripcion, precio, imagen){
+    var vista =
             `<div class="imagen">
             <img src="${imagen}" alt="producto">
         </div>
@@ -45,36 +41,34 @@ function htmlVistaProducto(id, nombre, descripcion, precio, imagen) {
             </div>
         
             <a id="btnComprar" >Comprar</a>
-        </div>`;
-    return cad; 
-    
+        </div>`
+    return vista  
 }
+
 function leerParametro(){
    
-    const words = new URLSearchParams(window.location.search);
-    let cad = words.get("idProducto");
-    if (!cad) return null;
-    return cad.trim();
+    const words = new URLSearchParams(window.location.search)
+    var vista = words.get("idProducto")
+    if (!vista) return null
+    return vista.trim()
 }
 
 
 function registrarCompra(){
-    
-    let d = document;
-    let session = getUsuarioAutenticado();
-    
-    if(! session.autenticado) {
-        alert("Antes de comprar debe iniciar sesión");
-        return;
+
+    var session = getUsuarioAutenticado()
+    if(!session.autenticado){
+        alert("Porfavor inicie secion")
+        return
     }
     
-    let cantidad = d.getElementById("cantidadProducto").value;
-    let idUsuario = session.idUsuario;
-    let emailUsuario = session.email;
-    let nameProducto = d.getElementById("nameProducto");
-    let idProducto = nameProducto.getAttribute("data-idproducto");
-    const fecha = new Date();
-    ventasServices.crear(idUsuario,emailUsuario,idProducto,nameProducto.textContent,cantidad,fecha,0);
-    location.replace("tienda.html");
-    alert("Compra realizada");
+    var cantidad = document.getElementById("cantidadProducto").value
+    var idUsuario = session.idUsuario
+    var emailUsuario = session.email
+    var nameProducto = document.getElementById("nameProducto")
+    var idProducto = nameProducto.getAttribute("data-idproducto")
+    const fecha = new Date()
+    ventasServices.crear(idUsuario, emailUsuario, idProducto, nameProducto.textContent, cantidad, fecha, 0)
+    location.replace("tienda.html")
+    alert("Compra exitosa")
 }

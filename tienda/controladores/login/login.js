@@ -38,14 +38,12 @@ const htmlLogin=
         
 </div>
 </div>
-`;
+`
 
-var formulario;
-var inputEmail;
-var inputPassword;
-var inputRepetirPass;
-
-
+var formulario
+var inputEmail
+var inputPassword
+var inputRepetirPass
 
 export async function login(){
     crearFormulario();
@@ -58,107 +56,105 @@ export async function register(){
 }  
 
 function crearFormulario(registrar){
-    let d = document;
-    let seccionLogin = d.querySelector(".seccionLogin");
-    let carrusel = d.querySelector(".carrusel");
-    carrusel.innerHTML = "";
-    let seccionProductos = d.querySelector(".seccionProductos");
-    seccionProductos.innerHTML = "";
-    let vistaProducto = d.querySelector(".vistaProducto");
-    vistaProducto.innerHTML = "";
+    var seccionLogin = document.querySelector(".seccionLogin")
+    var carrusel = document.querySelector(".carrusel")
+    carrusel.innerHTML = ""
+    var seccionProductos = document.querySelector(".seccionProductos")
+    seccionProductos.innerHTML = ""
+    var vistaProducto = document.querySelector(".vistaProducto");
+    vistaProducto.innerHTML = ""
 
-    seccionLogin.innerHTML = htmlLogin;
-    inputEmail = d.getElementById("loginEmail");
-    inputPassword = d.getElementById("loginPassword");
-    inputRepetirPass = d.getElementById("reLoginPassword");
-    if (! registrar) {
-        inputRepetirPass.outerHTML = "";
-    } else {
-        inputRepetirPass.style.display = "block";
-        d.querySelector(".cajaLogin p").innerHTML = "Registrar Usuario";
+    seccionLogin.innerHTML = htmlLogin
+    inputEmail = document.getElementById("loginEmail")
+    inputPassword = document.getElementById("loginPassword")
+    inputRepetirPass = document.getElementById("reLoginPassword")
+    if(!registrar){
+        inputRepetirPass.outerHTML = ""
+    }else{
+        inputRepetirPass.style.display = "block"
+        document.querySelector(".cajaLogin p").innerHTML = "Registrar Usuario"
     }
-    formulario = seccionLogin.querySelector(".formLogin");
+    formulario = seccionLogin.querySelector(".formLogin")
 } 
 
 async function  ingresar(e){
-    e.preventDefault();
-    let idUsuario = await usuarioExiste();
+    e.preventDefault()
+    var idUsuario = await usuarioExiste()
     if(idUsuario){
-        setUsuarioAutenticado(true,idUsuario);
-        mostrarUsuario(inputEmail.value);
-        window.location.href='#';
-        
+        setUsuarioAutenticado(true,idUsuario)
+        mostrarUsuario(inputEmail.value)
+        window.location.href='#'
     }else{
-        mostrarMensaje("email o contrasena incorrecto");
-    };
+        mostrarMensaje("email o contrasena incorrecto")
+    }
 }
 
 async function  registrarUsuario(e){
-    e.preventDefault();
+    e.preventDefault()
 
     if(inputPassword.value===inputRepetirPass.value){ 
-        await usuariosServices.crear(null,null,inputEmail.value,inputPassword.value) // hay q contar cuantos son, poner todos los null hasta llegar al cliente
-        mostrarMensaje("registrado");
-        window.location.href = "#login";
-    } else {
-        mostrarMensaje("Las contraseñas deben ser iguales");
+        await usuariosServices.crear(null,null,inputEmail.value,inputPassword.value) 
+        mostrarMensaje("registrado")
+        window.location.href = "#login"
+    }else{
+        mostrarMensaje("Las contraseñas deben ser iguales")
     }  
 }
-async function usuarioExiste() {
-    let existeUsuario;
-    let idUsuario;
+async function usuarioExiste(){
+    var existeUsuario
+    var idUsuario
     await usuariosServices.listar()
         .then(respuesta => {
             respuesta.forEach(usuario => {
-                if (usuario.correo === inputEmail.value && usuario.password === inputPassword.value) {
-                    idUsuario = usuario.id;
-                    return existeUsuario = true;
-                } else {
-                    return;
+                if(usuario.correo === inputEmail.value && usuario.password === inputPassword.value){
+                    idUsuario = usuario.id
+                    return existeUsuario = true
+                }else{
+                    return
                 }
             });
         })
         
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
 
-    if (!usuarioExiste) {
-        return false;
+    if (!usuarioExiste){
+        return false
     } else {
-        return idUsuario;
+        return idUsuario
     }     
 }
 
 export function mostrarUsuario(email){
-    const btnLogin = document.querySelector('.btnLogin');
-    const btnRegister = document.querySelector('.btnRegister');
+    const btnLogin = document.querySelector('.btnLogin')
+    const btnRegister = document.querySelector('.btnRegister')
     
     if(btnLogin) {
-        btnLogin.textContent = email;
+        btnLogin.textContent = email
     }
-    
-    if(btnRegister) {
-        btnRegister.textContent = 'Logout';
-        btnRegister.href = '#logout';
+
+    if(btnRegister){
+        btnRegister.textContent = 'Logout'
+        btnRegister.href = '#logout'
     }
 }
 
-function mostrarMensaje(msj) {
-    alert(msj);
+function mostrarMensaje(msj){
+    alert(msj)
 }
 
-export function setUsuarioAutenticado(booleano, idUsuario) {
-    let email = "";
+export function setUsuarioAutenticado(booleano, idUsuario){
+    var email = ""
     if (inputEmail)
-        email = inputEmail.value;
-    sessionStorage.setItem('autenticado',booleano);
-    sessionStorage.setItem('idUsuario',idUsuario);
-    sessionStorage.setItem('email',email);
+        email = inputEmail.value
+    sessionStorage.setItem('autenticado',booleano)
+    sessionStorage.setItem('idUsuario',idUsuario)
+    sessionStorage.setItem('email',email)
 }
 
-export function getUsuarioAutenticado() {
-    var session = new Object();
-    session.autenticado = sessionStorage.getItem('autenticado')=== "true";
-    session.idUsuario = sessionStorage.getItem('idUsuario');
-    session.email = sessionStorage.getItem('email');
-    return session;
+export function getUsuarioAutenticado(){
+    var session = new Object()
+    session.autenticado = sessionStorage.getItem('autenticado')=== "true"
+    session.idUsuario = sessionStorage.getItem('idUsuario')
+    session.email = sessionStorage.getItem('email')
+    return session
 }

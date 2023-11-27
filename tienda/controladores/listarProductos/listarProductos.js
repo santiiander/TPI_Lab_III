@@ -3,7 +3,7 @@ import { productosServices } from "../../../servicios/productos-servicios.js";
 
 function htmlCategoria(id, categoria){
    
-    let cad = 
+    var vista = 
     `
     <div class="categorias" data-idCategoria="${id}">
         <h1 class="categoria">${categoria}</h1>
@@ -14,12 +14,12 @@ function htmlCategoria(id, categoria){
         </div>
     </div>            
     `;
-    return cad; 
+    return vista
 }
 
 function htmlItemProducto(id, imagen, nombre, precio){
    
-    let cad = 
+    var vista = 
     `
     <div class="item-producto">
 
@@ -29,39 +29,29 @@ function htmlItemProducto(id, imagen, nombre, precio){
 
     <a href="?idProducto=${id}#vistaProducto" type="button" class="producto_enlace" >Ver producto</a>
 
-    </div>`;
-    return cad; 
+    </div>`
+    return vista
 }
 
 async function asignarProducto(id){
-   
-    let d = document;
-    let cad = "";
-    let resProd = await productosServices.listarPorCategoria(id);
-
+    var vista = ""
+    var resProd = await productosServices.listarPorCategoria(id);
     resProd.forEach(producto => {
-        cad += htmlItemProducto(producto.id,producto.foto,producto.nombre,producto.precio);
-    });
-        
-    let itemProducto = d.querySelector("[data-idCategoria='"+ id + "'] .productos");
-    itemProducto.innerHTML = cad; 
+        vista += htmlItemProducto(producto.id, producto.foto, producto.nombre, producto.precio)
+    })
+    var itemProducto = document.querySelector("[data-idCategoria='"+ id + "'] .productos")
+    itemProducto.innerHTML = vista
 } 
 
 
 export async function listarProductos(){
-   
-    let d = document;
-    let resCat;
-
-    let listaProductos = d.querySelector(".seccionProductos");
-
-    listaProductos.innerHTML = "";
-    resCat = await categoriasServices.listar();
-
+    var resCat
+    var listaProductos = document.querySelector(".seccionProductos")
+    listaProductos.innerHTML = ""
+    resCat = await categoriasServices.listar()
     resCat.forEach(element => {
-        listaProductos.innerHTML += htmlCategoria(element.id, element.descripcion);
-        asignarProducto(element.id);
+        listaProductos.innerHTML += htmlCategoria(element.id, element.descripcion)
+        asignarProducto(element.id)
     })
-     
-}  
+}
 
