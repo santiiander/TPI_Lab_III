@@ -43,15 +43,13 @@ async function asignarProducto(id){
     itemProducto.innerHTML = vista
 } 
 
-
 export async function listarProductos(){
-    var resCat
+    var lisVista
     var listaProductos = document.querySelector(".seccionProductos")
     listaProductos.innerHTML = ""
-    resCat = await categoriasServices.listar()
-    resCat.forEach(element => {
+    lisVista = await categoriasServices.listar()
+    lisVista.forEach(element => {
         listaProductos.innerHTML += htmlCategoria(element.id, element.descripcion)
         asignarProducto(element.id)
     })
 }
-

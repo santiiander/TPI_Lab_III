@@ -6,12 +6,13 @@ import { getUsuarioAutenticado } from "../login/login.js";
 export async function vistaProducto(){
     var lista
     var carrusel = document.querySelector(".carrusel")
-    var seccionProductos = document.querySelector(".seccionProductos")
-    var vistaProducto = document.querySelector(".vistaProducto")
     carrusel.innerHTML = ""
+    var seccionProductos = document.querySelector(".seccionProductos")
+    seccionProductos.innerHTML = ""
     var seccionLogin = document.querySelector(".seccionLogin")
     seccionLogin.innerHTML = ""
-    seccionProductos.innerHTML = ""
+
+    var vistaProducto = document.querySelector(".vistaProducto")
     var idProducto = leerParametro()
 
     lista = await productosServices.listar(idProducto)
@@ -52,7 +53,6 @@ function leerParametro(){
     if (!vista) return null
     return vista.trim()
 }
-
 
 function registrarCompra(){
 

@@ -41,9 +41,9 @@ const htmlLogin=
 `
 
 var formulario
-var inputEmail
-var inputPassword
-var inputRepetirPass
+var email
+var contra
+var repContra
 
 export async function login(){
     crearFormulario()
@@ -56,7 +56,7 @@ export async function register(){
 }  
 
 function crearFormulario(registrar){
-    var seccionLogin = document.querySelector(".seccionLogin")
+
     var carrusel = document.querySelector(".carrusel")
     carrusel.innerHTML = ""
     var seccionProductos = document.querySelector(".seccionProductos")
@@ -64,14 +64,15 @@ function crearFormulario(registrar){
     var vistaProducto = document.querySelector(".vistaProducto")
     vistaProducto.innerHTML = ""
 
+    var seccionLogin = document.querySelector(".seccionLogin")
     seccionLogin.innerHTML = htmlLogin
-    inputEmail = document.getElementById("loginEmail")
-    inputPassword = document.getElementById("loginPassword")
-    inputRepetirPass = document.getElementById("reLoginPassword")
+    email = document.getElementById("loginEmail")
+    contra = document.getElementById("loginPassword")
+    repContra = document.getElementById("reLoginPassword")
     if(!registrar){
-        inputRepetirPass.outerHTML = ""
+        repContra.outerHTML = ""
     }else{
-        inputRepetirPass.style.display = "block"
+        repContra.style.display = "block"
         document.querySelector(".cajaLogin p").innerHTML = "Registrar Usuario"
     }
     formulario = seccionLogin.querySelector(".formLogin")
@@ -82,7 +83,7 @@ async function  ingresar(e){
     var idUsuario = await usuarioExiste()
     if(idUsuario){
         setUsuarioAutenticado(true,idUsuario)
-        mostrarUsuario(inputEmail.value)
+        mostrarUsuario(email.value)
         window.location.href='#'
     }else{
         mostrarMensaje("email o contrasena incorrecto")
@@ -92,8 +93,8 @@ async function  ingresar(e){
 async function  registrarUsuario(e){
     e.preventDefault()
 
-    if(inputPassword.value===inputRepetirPass.value){ 
-        await usuariosServices.crear(null,null,inputEmail.value,inputPassword.value) 
+    if(contra.value===repContra.value){ 
+        await usuariosServices.crear(null,null,email.value,contra.value) 
         mostrarMensaje("registrado")
         window.location.href = "#login"
     }else{
@@ -106,7 +107,7 @@ async function usuarioExiste(){
     await usuariosServices.listar()
         .then(respuesta => {
             respuesta.forEach(usuario => {
-                if(usuario.correo === inputEmail.value && usuario.password === inputPassword.value){
+                if(usuario.correo === email.value && usuario.password === contra.value){
                     idUsuario = usuario.id
                     return existeUsuario = true
                 }else{
@@ -114,7 +115,6 @@ async function usuarioExiste(){
                 }
             });
         })
-        
         .catch(error => console.log(error))
 
     if (!usuarioExiste){
@@ -144,8 +144,8 @@ function mostrarMensaje(msj){
 
 export function setUsuarioAutenticado(booleano, idUsuario){
     var email = ""
-    if (inputEmail)
-        email = inputEmail.value
+    if (email)
+        email = email.value
     sessionStorage.setItem('autenticado',booleano)
     sessionStorage.setItem('idUsuario',idUsuario)
     sessionStorage.setItem('email',email)
