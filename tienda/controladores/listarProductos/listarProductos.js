@@ -13,7 +13,7 @@ function htmlCategoria(id, categoria){
             <p class="item-producto">Sin productos.</p>
         </div>
     </div>            
-    `;
+    `
     return vista
 }
 

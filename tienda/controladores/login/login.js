@@ -46,13 +46,13 @@ var inputPassword
 var inputRepetirPass
 
 export async function login(){
-    crearFormulario();
-    formulario.addEventListener("submit",ingresar);
+    crearFormulario()
+    formulario.addEventListener("submit",ingresar)
 }  
 
 export async function register(){
-   crearFormulario(true);
-   formulario.addEventListener("submit",registrarUsuario);
+   crearFormulario(true)
+   formulario.addEventListener("submit",registrarUsuario)
 }  
 
 function crearFormulario(registrar){
@@ -61,7 +61,7 @@ function crearFormulario(registrar){
     carrusel.innerHTML = ""
     var seccionProductos = document.querySelector(".seccionProductos")
     seccionProductos.innerHTML = ""
-    var vistaProducto = document.querySelector(".vistaProducto");
+    var vistaProducto = document.querySelector(".vistaProducto")
     vistaProducto.innerHTML = ""
 
     seccionLogin.innerHTML = htmlLogin
